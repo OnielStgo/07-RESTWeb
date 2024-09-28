@@ -1,16 +1,13 @@
 
 export class CreateTodoDto {
-
-  constructor(
-    private readonly text: string
+  private constructor(
+    public readonly text: string,
   ){}
 
-  static create(props: {[key: string]: any}): [string?, CreateTodoDto?] {
+  static create( props: {[key:string]: any} ): [string?, CreateTodoDto?]  {
+    const { text } = props;
+    if ( !text ) return ['Text property is required', undefined];
 
-    const { text } = props
-
-    if(!text) return ["Text property is required", undefined]
-
-    return [undefined, new CreateTodoDto(text)]
+    return [undefined, new CreateTodoDto(text)];
   }
 }
